@@ -1,0 +1,5 @@
+# O texto da Bíblia tem direitos autorais: não suba para o GitHub.
+biblia*.json
+data/biblia.json
+node_modules/
+.DS_Store
