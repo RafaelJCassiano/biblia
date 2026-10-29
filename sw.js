@@ -1,6 +1,6 @@
 // Service worker do Leitura Guiada.
 // Para forçar a atualização do app nos aparelhos, aumente o número de VERSION.
-const VERSION = "v3";
+const VERSION = "v4";
 const CACHE = "leitura-guiada-" + VERSION;
 const SHELL = [
   "./", "index.html", "app.js", "config.js", "manifest.webmanifest",

@@ -156,6 +156,22 @@ details.step[open] > summary::before { transform: rotate(90deg); }
 .vtext { font-family: var(--font-text); font-size: 1.05rem; line-height: 1.6; margin: 0 0 14px; }
 #f-o { min-height: 220px; }
 a.linkbtn, a.btn { text-decoration: none; display: inline-block; }
+.v.inr { box-shadow: inset 3px 0 0 var(--accent); }
+.vn b { font-weight: 600; }
+.scopes { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 14px; }
+.scopes .btn { padding: 7px 12px; font-size: .88rem; }
+.sm-item { border: 1px solid var(--line); border-radius: 12px; background: var(--surface); padding: 8px 12px 12px; display: grid; grid-template-columns: minmax(0, 1fr); gap: 8px; margin-bottom: 12px; }
+.sm-item header { display: flex; justify-content: space-between; align-items: center; font-size: .85rem; gap: 8px; }
+.sm-item .tog { color: var(--ink); font-weight: 600; text-align: left; padding-left: 0; }
+.sm-item .prev { margin: 0; font-family: var(--font-text); color: var(--muted); cursor: pointer; overflow-wrap: anywhere; }
+.sm-fields { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 8px 10px; }
+.sm-fields .wide { grid-column: 1 / -1; }
+.sm-fields input, .sheet input[type="number"] { width: 100%; min-width: 0; font: inherit; font-size: 1rem; padding: 9px 10px; border: 1px solid var(--line); border-radius: 8px; background: var(--bg); color: var(--ink); }
+.sm-fields input:focus, .sheet input[type="number"]:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent-soft); }
+textarea.sm-text { min-height: 45vh; }
+details.smtext { border: 1px solid var(--line); border-radius: 12px; background: var(--surface); padding: 8px 12px; margin-bottom: 14px; }
+details.smtext > summary { cursor: pointer; font-weight: 600; padding-block: 4px; }
+.sermon .chead { padding-block: 4px 14px; }
 .sub { font-size: .78rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin: 28px 0 8px; }
 .sh { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
 .note-item .tog { color: var(--muted); font-weight: 600; padding-left: 0; text-align: left; }
