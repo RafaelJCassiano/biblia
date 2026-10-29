@@ -663,12 +663,12 @@
     var nav = $("#n-acc"); if (nav) nav.hidden = !sbConfigured();
     if ("serviceWorker" in navigator && location.protocol !== "file:") navigator.serviceWorker.register("sw.js").catch(function () {});
     app.innerHTML = '<p class="empty page">Carregando…</p>';
-    Promise.all([fetchJson("data/guia.json"), fetchJson("data/contexto.json")]).then(function (r) {
+    Promise.all([fetchJson("guia.json"), fetchJson("contexto.json")]).then(function (r) {
       GUIDE = r[0]; CTX = r[1];
       sbStart();
       return idbGet("biblia").then(function (j) {
         if (j && j.b) return j;
-        return fetchJson("data/biblia.json").then(function (x) { return idbSet("biblia", x).then(function () { return x; }); }).catch(function () { return null; });
+        return fetchJson("biblia.json").then(function (x) { return idbSet("biblia", x).then(function () { return x; }); }).catch(function () { return null; });
       });
     }).then(function (j) { if (j && j.b) useBible(j); else render(); })
       .catch(function () { app.innerHTML = '<p class="empty page">Não foi possível carregar os arquivos do app. Verifique a conexão e tente de novo.</p>'; });

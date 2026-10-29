@@ -1,11 +1,11 @@
 // Service worker do Leitura Guiada.
 // Para forçar a atualização do app nos aparelhos, aumente o número de VERSION.
-const VERSION = "v1";
+const VERSION = "v2";
 const CACHE = "leitura-guiada-" + VERSION;
 const SHELL = [
   "./", "index.html", "app.js", "config.js", "manifest.webmanifest",
-  "vendor/supabase.js", "data/guia.json", "data/contexto.json",
-  "icons/icon.svg", "icons/icon-192.png", "icons/icon-512.png"
+  "supabase.js", "guia.json", "contexto.json",
+  "icon.svg", "icon-192.png", "icon-512.png"
 ];
 
 self.addEventListener("install", (e) => {
