@@ -136,7 +136,9 @@
   }
   function sbStart() {
     if (!sbConfigured() || sb) return;
-    sb = window.supabase.createClient(CFG.supabaseUrl, CFG.supabaseKey, { auth: { persistSession: true, autoRefreshToken: true } });
+    var url = String(CFG.supabaseUrl || "").trim().replace(/^["\']|["\']$/g, "");
+    try { url = new URL(url).origin; } catch (e) {}
+    sb = window.supabase.createClient(url, String(CFG.supabaseKey || "").trim(), { auth: { persistSession: true, autoRefreshToken: true } });
     sb.auth.onAuthStateChange(function (ev, sess) {
       var u = sess && sess.user, was = sbUser && sbUser.id;
       sbUser = u || null;
@@ -153,7 +155,9 @@
     if (sbUser) return '<div class="item"><p>Conectado como <b>' + esc(sbUser.email || "") + '</b>.</p><div class="acts" style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px"><button class="btn" id="syncnow">Sincronizar agora</button><button class="btn ghost" id="signout">Sair</button></div><p class="hint" id="accmsg" aria-live="polite" style="margin-top:8px"></p></div>';
     return '<form id="authform" class="item"><label class="hint" for="em">E-mail</label><input id="em" type="email" autocomplete="username" required><label class="hint" for="pw" style="margin-top:8px;display:block">Senha</label><input id="pw" type="password" autocomplete="current-password" minlength="6" required><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px"><button class="btn" type="submit" id="signin">Entrar</button><button class="btn ghost" type="button" id="signup">Criar conta</button></div><p class="hint" id="accmsg" aria-live="polite" style="margin-top:8px"></p></form>';
   }
-  function authErr(e) { var m = e && e.message ? e.message : ""; if (/Invalid login/i.test(m)) return "E-mail ou senha incorretos."; if (/not confirmed/i.test(m)) return "Confirme o e-mail antes de entrar."; if (/signups? not allowed|disabled/i.test(m)) return "Novas contas estão desativadas neste projeto."; return "Não deu certo: " + m; }
+  function authErr(e) { var m = e && e.message ? e.message : ""; if (/Invalid path/i.test(m)) return "O endereço do Supabase no config.js está errado. Use só https://SEU-PROJETO.supabase.co, sem nada depois.";
+    if (/Invalid API key|apikey/i.test(m)) return "A chave do Supabase no config.js está errada. Use a chave anon (publishable) do projeto.";
+    if (/Invalid login/i.test(m)) return "E-mail ou senha incorretos."; if (/not confirmed/i.test(m)) return "Confirme o e-mail antes de entrar."; if (/signups? not allowed|disabled/i.test(m)) return "Novas contas estão desativadas neste projeto."; return "Não deu certo: " + m; }
   function doSignIn() {
     var em = $("#em").value.trim(), pw = $("#pw").value; if (!em || !pw) return;
     setMsg("Entrando…");
